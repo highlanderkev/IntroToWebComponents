@@ -1,0 +1,30 @@
+<link rel="import" href="/bower_components/polymer/polymer.html">
+<link rel="import" href="/bower_components/paper-toolbar/paper-toolbar.html">
+<dom-module name="p-header">
+    <template>
+        <style>
+        paper-toolbar.red {
+            --paper-toolbar-background: green;
+            --paper-toolbar-color: white;
+        }
+        </style>
+        <paper-toolbar class="medium red" justify="center">
+            <div class="top">
+                <span class="title">{{title}}</span>
+            </div>
+        </paper-toolbar>
+    </template>
+    
+    <script>
+        (function(document, Polymer){
+            "use strict";
+
+            Polymer({
+                is: "p-header",
+                properties: {
+                    title: String
+                }
+            });
+        })(document, Polymer);
+    </script>
+</dom-module>

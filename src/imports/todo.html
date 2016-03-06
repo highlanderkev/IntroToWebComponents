@@ -1,0 +1,48 @@
+<link rel="import" href="/bower_components/polymer/polymer.html">
+<link rel="import" href="/bower_components/paper-card/paper-card.html">
+<link rel="import" href="/bower_components/paper-button/paper-button.html">
+<dom-module name="p-todo">
+    <template>
+        <style is="custom-style">
+            
+            paper-card.custom {
+                --paper-card-background-color: var(--paper-blue-500);
+            }
+            
+            paper-button.custom:hover {
+                background-color: var(--paper-indigo-500);
+            }
+            
+            paper-button.red {
+                background-color: red;
+                color: white;
+            }
+            
+            paper-button.green {
+                background-color: green;
+                color: white;
+            }
+        </style>
+        <paper-card heading="{{title}}" class="custom">
+            <div class="card-content">{{content}}</div>
+            <div class="card-actions">
+                <paper-button raised class="custom green">Done</paper-button>
+                <paper-button raised class="custom red">Roadblocked</paper-button>
+            </div>
+        </paper-card>
+    </template>
+
+    <script>
+        (function (document, Polymer) {
+            "use strict";
+
+            Polymer({
+                is: "p-todo",
+                properties: {
+                    title: String,
+                    content: String
+                }
+            });
+        })(document, Polymer);
+    </script>
+</dom-module>

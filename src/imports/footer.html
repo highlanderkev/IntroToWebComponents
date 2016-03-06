@@ -1,0 +1,38 @@
+<link rel="import" href="/bower_components/polymer/polymer.html">
+<link rel="import" href="/bower_components/paper-material/paper-material.html">
+<link rel="import" href="/bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+<dom-module name="p-footer">
+    <template>
+        <style is="custom-style" include="iron-flex iron-flex-alignment">
+        <style>
+            footer {
+                min-height: 200px;
+            }
+            paper-material {
+                min-height: inherit;
+                background-color: var(--paper-blue-300);
+                color: black;
+            }
+            .flex-center-align {
+                @apply(--layout-horizontal);
+                @apply(--layout-center);
+                @apply(--layout-justified);
+                height: 120px;
+            }
+        </style>
+        <footer >
+            <paper-material elevation="3" class="flex-center-align">
+                <div>This is a footer</div>
+            </paper-material>
+        </footer>
+    </template>
+    <script>
+        (function(document, Polymer){
+            "use strict";
+            
+            Polymer({
+                is: "p-footer"
+            });
+        })(document, Polymer);
+    </script>
+</dom-module>

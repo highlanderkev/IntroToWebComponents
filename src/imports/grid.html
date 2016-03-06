@@ -1,0 +1,23 @@
+<link rel="import" href="/bower_components/polymer/polymer.html">
+<dom-module name="p-grid">
+    <template>
+        <button id="toggle-collapsible" aria-controls="collapsible" aria-expanded="false">Toggle</button>
+        <b-collapsible id="collapsible" aria-labelledby="toggle-collapsible" duration="100">
+            <ul>
+                <li>Test1</li>
+                <li>Test2</li>
+                <li>Test3</li>
+            </ul>
+        </b-collapsible>
+    </template>
+    
+    <script>
+        (function(document, Polymer){
+            "use strict";
+
+            Polymer({
+                is: "p-grid"
+            });
+        })(document, Polymer);
+    </script>
+</dom-module>
