@@ -4,6 +4,16 @@
 <dom-module name="p-todo">
     <template>
         <style is="custom-style">
+            .card-header {
+                @apply(--paper-font-headline);
+            }
+            
+            .card-status {
+                float: right;
+                font-size: 15px;
+                vertical-align: text-top;
+                color: var(--paper-green-700);
+            }
             
             paper-card.custom {
                 --paper-card-background-color: var(--paper-blue-500);
@@ -23,10 +33,21 @@
                 color: white;
             }
         </style>
-        <paper-card heading="{{title}}" class="custom">
-            <div class="card-content">{{content}}</div>
+        <paper-card class="custom">
+            <div class="card-content">
+                <div class="card-header">
+                    {{title}}
+                    <div class="card-status">
+                        {{status}}
+                    </div>
+                </div>
+                <div class="card-content">
+                    {{content}}
+                </div>
+            </div>
             <div class="card-actions">
                 <paper-button raised class="custom green">Done</paper-button>
+                <paper-button raised class="custom yellow">Ready to Test</paper-button>
                 <paper-button raised class="custom red">Roadblocked</paper-button>
             </div>
         </paper-card>
@@ -40,7 +61,12 @@
                 is: "p-todo",
                 properties: {
                     title: String,
-                    content: String
+                    content: String,
+                    status: {
+                        type: String,
+                        notify: true,
+                        value: "In Progress"
+                    }
                 }
             });
         })(document, Polymer);

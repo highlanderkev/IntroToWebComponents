@@ -1,0 +1,23 @@
+<link rel="import" href="/bower_components/polymer/polymer.html">
+<link rel="import" href="/node_modules/bosonic-core-elements/src/b-draggable.html">
+<dom-module name="p-drag">
+    <template>
+        <b-draggable handle=".draggable" target=".draggable" containement="parent">
+            <div>
+                <div class="draggable">
+                    <content></content>
+                </div>
+            </div>
+        </b-draggable>
+    </template>
+
+    <script>
+        (function (document, Polymer) {
+            "use strict";
+
+            Polymer({
+                is: "p-drag"
+            });
+        })(document, Polymer);
+    </script>
+</dom-module>
