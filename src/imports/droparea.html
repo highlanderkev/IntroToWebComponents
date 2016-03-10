@@ -1,0 +1,38 @@
+<link rel="import" href="/bower_components/polymer/polymer.html">
+<dom-module name="p-droparea">
+    <template>
+        <style>
+            .droparea {
+                min-width: 200px;
+                min-height: 200px;
+                background-color: white;
+            }
+        </style>
+        <div id="droparea" class="droparea" on-drop="onDrop" on-dragover="allowDrop">
+            <content></content>
+        </div>
+    </template>
+    <script>
+        (function(document, Polymer){
+            "use strict";
+            
+            Polymer({
+                is: "p-droparea",
+                listeners: {
+                    "droparea.on-drop": "onDrop",
+                    "droparea.on-dragover": "allowDrop"
+                },
+                onDrop: function(event){
+                    console.log("OnDrop");
+                    event.preventDefault();
+                    var data = event.dataTransfer.getData("text");
+                    event.target.appendChild(document.getElementById(data));
+                },
+                allowDrop: function(event){
+                    console.log("AllowDrop");
+                    event.preventDefault();
+                }
+            });
+        })(document, Polymer);
+    </script>
+</dom-module>

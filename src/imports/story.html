@@ -1,0 +1,59 @@
+<link rel="import" href="/bower_components/polymer/polymer.html">
+<link rel="import" href="/bower_components/paper-material/paper-material.html">
+<link rel="import" href="/bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+
+<!--Custom Elements-->
+<link rel="import" href="./storyControl.html">
+<link rel="import" href="./storySection.html">
+<dom-module name="p-story">
+    <template>
+        <style is="custom-style" include="iron-flex iron-flex-alignment">
+            paper-material {
+                min-height: inherit;
+                background-color: var(--paper-blue-300);
+                color: black;
+            }
+            
+            .flex-center-align {
+                @apply(--layout-horizontal);
+                @apply(--layout-center);
+                @apply(--layout-justified);
+                min-height: 300px;
+            }
+            
+            aside {
+                display: block;
+                float: left;
+                width: 100px;
+                min-height: inherit;
+            }
+        </style>
+        <paper-material elevation="1" class="flex-center-align">
+            <aside>
+                <p-storyControl title="Test"></p-storyControl>
+            </aside>
+            <section class="todo">
+                <!--<h2>Todo</h2>-->
+                <p-storySection title="Todo"></p-storySection>
+            </section>
+            <section class="inProgress">
+                <h2>In Progress</h2>
+            </section>
+            <section class="toTest">
+                <h2>Ready to Test</h2>
+            </section>
+            <section class="done">
+                <h2>Done</h2>
+            </section>
+        </paper-material>
+    </template>
+    <script>
+        (function (document, Polymer) {
+            "use strict";
+
+            Polymer({
+                is: "p-story"
+            });
+        })(document, Polymer);
+    </script>
+</dom-module>

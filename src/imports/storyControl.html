@@ -1,0 +1,46 @@
+<link rel="import" href="/bower_components/polymer/polymer.html">
+<link rel="import" href="/bower_components/paper-button/paper-button.html">
+<link rel="import" href="/bower_components/paper-dialog/paper-dialog.html">
+<link rel="import" href="/bower_components/paper-input/paper-input.html">
+<dom-module name="p-storyControl">
+    <template>
+        <style>
+            .control {
+                min-height: inherit;
+                background: var(--paper-indigo-400);
+            }
+        </style>
+            <div class="control">
+                <h2>{{title}}</h2>
+                <paper-button onclick="todo.toggle()">Todo</paper-button>
+                <paper-button onclick="defect.toggle()">Defect</paper-button>
+            </div>
+            <paper-dialog id="todo">
+                <h2>New Todo</h2>
+                <div class="buttons">
+                    <paper-button dialog-dismiss>Cancel</paper-button>
+                    <paper-button dialog-confirm>Accept</paper-button>
+                </div>
+            </paper-dialog>
+            <paper-dialog id="defect">
+                <h2>New Defect</h2>
+                <paper-input label="Description"></paper-input>
+                <div class="buttons">
+                    <paper-button dialog-dismiss>Cancel</paper-button>
+                    <paper-button dialog-confirm>Accept</paper-button>
+                </div>
+            </paper-dialog>
+    </template>
+    <script>
+        (function(document, Polymer){
+            "use strict";
+            
+            Polymer({
+                is: "p-storyControl",
+                properties: {
+                    title: String
+                }
+            });
+        })(document, Polymer);
+    </script>
+</dom-module>

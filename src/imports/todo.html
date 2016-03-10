@@ -1,14 +1,21 @@
 <link rel="import" href="/bower_components/polymer/polymer.html">
 <link rel="import" href="/bower_components/paper-card/paper-card.html">
 <link rel="import" href="/bower_components/paper-button/paper-button.html">
+
+<!--Custom-->
+<link rel="import" href="./status.html">
 <dom-module name="p-todo">
     <template>
         <style is="custom-style">
+            :host {
+                --card-status-color: var(--paper-yellow-500);
+            }
+            
             .card-header {
                 @apply(--paper-font-headline);
             }
             
-            .card-status {
+            p-status {
                 float: right;
                 font-size: 15px;
                 vertical-align: text-top;
@@ -32,23 +39,25 @@
                 background-color: green;
                 color: white;
             }
+            
         </style>
         <paper-card class="custom">
             <div class="card-content">
                 <div class="card-header">
                     {{title}}
-                    <div class="card-status">
-                        {{status}}
-                    </div>
+                    <!--<div id="status" class="card-status">-->
+                    <!--    {{status}}-->
+                    <!--</div>-->
+                    <p-status status="{{status}}"></p-status>
                 </div>
                 <div class="card-content">
                     {{content}}
                 </div>
             </div>
             <div class="card-actions">
-                <paper-button raised class="custom green">Done</paper-button>
-                <paper-button raised class="custom yellow">Ready to Test</paper-button>
-                <paper-button raised class="custom red">Roadblocked</paper-button>
+                <paper-button id="done" raised class="custom green" on-click="handleClick">Done</paper-button>
+                <paper-button id="test" raised class="custom yellow" on-click="handleClick">Ready for Test</paper-button>
+                <paper-button id="blocked" raised class="custom red" on-click="handleClick">Roadblocked</paper-button>
             </div>
         </paper-card>
     </template>
@@ -56,6 +65,13 @@
     <script>
         (function (document, Polymer) {
             "use strict";
+
+            var STATUS = {
+                DONE: "Done",
+                TEST: "Ready for Test",
+                BLOCKED: "Road Blocked",
+                PROGRESS: "In Progress"
+            };
 
             Polymer({
                 is: "p-todo",
@@ -65,7 +81,32 @@
                     status: {
                         type: String,
                         notify: true,
-                        value: "In Progress"
+                        value: STATUS.PROGRESS
+                    },
+                    color: {
+                        type: String,
+                        notify: false,
+                        value: "green"
+                    }
+                },
+                handleClick: function(e, detail){
+                    console.log(e.target.id === "done", detail);
+                    switch(e.target.id){
+                        case "done": 
+                            this.status = STATUS.DONE;
+                            this.customStyle["--card-status-color"] = "green";
+                            this.updateStyles();
+                            break;
+                        case "test":
+                            this.status = STATUS.TEST;
+                            this.customStyle["--card-status-color"] = "blue";
+                            this.updateStyles();
+                            break;
+                        case "blocked":
+                            this.status = STATUS.BLOCKED;
+                           this.customStyle["--card-status-color"] = "red";
+                           this.updateStyles();
+                            break;
                     }
                 }
             });

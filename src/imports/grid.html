@@ -1,4 +1,5 @@
 <link rel="import" href="/bower_components/polymer/polymer.html">
+<link rel="import" href="./draggable.html">
 <dom-module name="p-grid">
     <template>
         <style>
@@ -7,8 +8,11 @@
                 height: 100%;
             }
         </style>
-        <div class="grid">
-            <content></content>
+        <div id="grid">
+            <div id="placeholder"></div>
+            <p-drag>
+                Test
+            </p-drag>
         </div>
     </template>
     
@@ -17,7 +21,24 @@
             "use strict";
 
             Polymer({
-                is: "p-grid"
+                is: "p-grid",
+                // handleTrack: function(e){
+                //     switch(e.detail.state){
+                //         case "start":
+                //             this.message = "Tracking started!";
+                //             break;
+                //         case "track":
+                //             this.message = "Tracking in progress..." + e.detail.x + "," + e.detail.y;
+                //             break
+                //         case "end":
+                //             this.message = "Tracking ended!";
+                //             break;
+                //     }
+                // },
+                addDraggable: function(item){
+                    var draggable = document.createElement("p-drag");
+                    Polymer.dom(this.$.grid).insertBefore(draggable, this.$.placeholder);
+                }
             });
         })(document, Polymer);
     </script>

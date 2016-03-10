@@ -1,0 +1,72 @@
+<link rel="import" href="/bower_components/polymer/polymer.html">
+<link rel="import" href="/bower_components/paper-card/paper-card.html">
+<link rel="import" href="/bower_components/paper-button/paper-button.html">
+<dom-module name="p-status">
+    <template>
+        <style is="custom-style">
+            :host {
+                @apply(--card-status-color);
+            }
+            
+            .card-status {
+                color: var(--card-status-color, green);
+            }
+            
+            /*.card-status {*/
+            /*    float: right;*/
+            /*    font-size: 15px;*/
+            /*    vertical-align: text-top;*/
+            /*    color: var(--paper-green-700);*/
+            /*}*/
+            
+            /*paper-card.custom {*/
+            /*    --paper-card-background-color: var(--paper-blue-500);*/
+            /*}*/
+            
+            /*paper-button.custom:hover {*/
+            /*    background-color: var(--paper-indigo-500);*/
+            /*}*/
+            
+            /*paper-button.red {*/
+            /*    background-color: red;*/
+            /*    color: white;*/
+            /*}*/
+            
+            /*paper-button.green {*/
+            /*    background-color: green;*/
+            /*    color: white;*/
+            /*}*/
+            
+            /*.blue {*/
+            /*    color: var(--paper-blue-700);*/
+            /*}*/
+            
+            /*.green {*/
+            /*    color: var(--paper-green-700);*/
+            /*}*/
+            
+            /*.card-status {*/
+            /*    --status-color: {*/
+            /*        color: green;*/
+            /*    }*/
+            /*}*/
+            
+        </style>
+        <div id="status" class="card-status">
+            {{status}}
+        </div>
+    </template>
+
+    <script>
+        (function (document, Polymer) {
+            "use strict";
+
+            Polymer({
+                is: "p-status",
+                properties: {
+                    status: String
+                }
+            });
+        })(document, Polymer);
+    </script>
+</dom-module>
