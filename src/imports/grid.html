@@ -1,4 +1,7 @@
 <link rel="import" href="/bower_components/polymer/polymer.html">
+
+<!--Custom-->
+<link rel="import" href="./storyControl.html">
 <link rel="import" href="./draggable.html">
 <dom-module name="p-grid">
     <template>
@@ -9,6 +12,7 @@
             }
         </style>
         <div id="grid">
+            <p-storyControl id="control" title="test"></p-storyControl>
             <div id="placeholder"></div>
             <p-drag>
                 Test
@@ -22,24 +26,25 @@
 
             Polymer({
                 is: "p-grid",
-                // handleTrack: function(e){
-                //     switch(e.detail.state){
-                //         case "start":
-                //             this.message = "Tracking started!";
-                //             break;
-                //         case "track":
-                //             this.message = "Tracking in progress..." + e.detail.x + "," + e.detail.y;
-                //             break
-                //         case "end":
-                //             this.message = "Tracking ended!";
-                //             break;
-                //     }
-                // },
+                ready: function(){
+                    console.log(this.$.control);
+                    var grid = this;
+                    // this.$.control.addEventListener("kick", function(e){
+                    //     console.log(e.detail.kicked);
+                    //     grid.addDraggable(e.detail.kicked);
+                    // });
+                    this.$.control.addEventListener("kick", this.addDraggable("test"));
+                },
                 addDraggable: function(item){
+                    console.log(item);
                     var draggable = document.createElement("p-drag");
                     Polymer.dom(this.$.grid).insertBefore(draggable, this.$.placeholder);
                 }
             });
+            
+            // document.querySelector("control").addEventListener('kick', function (e) {
+            //     console.log(e.detail.kicked); // true
+            // });
         })(document, Polymer);
     </script>
 </dom-module>

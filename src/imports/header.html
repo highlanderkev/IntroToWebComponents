@@ -3,20 +3,25 @@
 <dom-module name="p-header">
     <template>
         <style>
-        paper-toolbar.red {
-            --paper-toolbar-background: green;
-            --paper-toolbar-color: white;
-        }
+            :host {
+                @apply(--header-panel-color);
+                @apply(--header-panel-background-color)
+            }
+            
+            paper-toolbar {
+                --paper-toolbar-background: var(--header-panel-background-color, green);
+                --paper-toolbar-color: var(--header-panel-color, white);
+            }
         </style>
-        <paper-toolbar class="medium red" justify="center">
+        <paper-toolbar class="medium" justify="center">
             <div class="top">
                 <span class="title">{{title}}</span>
             </div>
         </paper-toolbar>
     </template>
-    
+
     <script>
-        (function(document, Polymer){
+        (function (document, Polymer) {
             "use strict";
 
             Polymer({

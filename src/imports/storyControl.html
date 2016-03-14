@@ -6,20 +6,27 @@
     <template>
         <style>
             .control {
+                min-width: inherit;
                 min-height: inherit;
-                background: var(--paper-indigo-400);
+                background: var(--paper-green-400);
+            }
+            
+            h2 {
+                text-align: center;
+                background: var(--paper-yellow-400);
             }
         </style>
             <div class="control">
                 <h2>{{title}}</h2>
-                <paper-button onclick="todo.toggle()">Todo</paper-button>
-                <paper-button onclick="defect.toggle()">Defect</paper-button>
+                <paper-button onclick="todo.toggle()">+Todo</paper-button>
+                <paper-button onclick="defect.toggle()">+Defect</paper-button>
             </div>
             <paper-dialog id="todo">
                 <h2>New Todo</h2>
+                <paper-input id="todoInput" label="Description"></paper-input>
                 <div class="buttons">
                     <paper-button dialog-dismiss>Cancel</paper-button>
-                    <paper-button dialog-confirm>Accept</paper-button>
+                    <paper-button id="todoAccept" dialog-confirm>Accept</paper-button>
                 </div>
             </paper-dialog>
             <paper-dialog id="defect">
@@ -39,6 +46,14 @@
                 is: "p-storyControl",
                 properties: {
                     title: String
+                },
+                listeners: {
+                    "todoAccept.tap": "addTodo"
+                },
+                addTodo: function(e, detail){
+                    //console.log("e,detail",e,detail);
+                    //console.log("input",this.$.todoInput.value);
+                    this.fire('kick', {kicked: true});
                 }
             });
         })(document, Polymer);

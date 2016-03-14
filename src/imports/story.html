@@ -5,9 +5,16 @@
 <!--Custom Elements-->
 <link rel="import" href="./storyControl.html">
 <link rel="import" href="./storySection.html">
+<link rel="import" href="./header.html">
+<link rel="import" href="./grid.html">
 <dom-module name="p-story">
     <template>
         <style is="custom-style" include="iron-flex iron-flex-alignment">
+            :host {
+                --header-panel-background-color: var(--paper-blue-100);
+                --header-panel-color: black;
+            }
+            
             paper-material {
                 min-height: inherit;
                 background-color: var(--paper-blue-300);
@@ -28,22 +35,22 @@
                 min-height: inherit;
             }
         </style>
+        <p-header title="{{title}}"></p-header>
         <paper-material elevation="1" class="flex-center-align">
             <aside>
-                <p-storyControl title="Test"></p-storyControl>
+                <p-grid title="{{title}}"></p-grid>
             </aside>
             <section class="todo">
-                <!--<h2>Todo</h2>-->
                 <p-storySection title="Todo"></p-storySection>
             </section>
             <section class="inProgress">
-                <h2>In Progress</h2>
+                <p-storySection title="In Progress"></p-storySection>
             </section>
             <section class="toTest">
-                <h2>Ready to Test</h2>
+                <p-storySection title="Ready to Test"></p-storySection>
             </section>
             <section class="done">
-                <h2>Done</h2>
+                <p-storySection title="Done"></p-storySection>
             </section>
         </paper-material>
     </template>
@@ -52,7 +59,10 @@
             "use strict";
 
             Polymer({
-                is: "p-story"
+                is: "p-story",
+                properties: {
+                    title: String
+                }
             });
         })(document, Polymer);
     </script>
