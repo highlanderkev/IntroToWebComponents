@@ -35,16 +35,20 @@
         <main flex>
             <section>
                 <h2>Web Components</h2>
-                <web-components></web-components>
-                <p-story></p-story>
+                <web-components id="components" links='["clock","footer","grid","header","story","todo"]'></web-components>
             </section>
             <section>
                 <h2>Examples</h2>
-                <p-grid>
-                    
-                </p-grid>
-                <p-todo title="Test" content="This is a todo."></p-todo>
-                    <p-todo title="Test" content="This is a todo."></p-todo>
+                <ul>
+                   <v-link title="Basic" link="/src/examples/basic.html"></v-link>
+                   <v-link title="Custom Element" link="/src/examples/customElement.html"></v-link>
+                   <v-link title="HTML Import" link="/src/examples/import.html"></v-link>
+                   <v-link title="Template" link="/src/examples/template.html"></v-link>
+                   <v-link title="Shadow DOM" link="/src/examples/shadowDom.html"></v-link>
+                   <v-link title="Polymer Basic" link="/src/examples/polymer-basic.html"></v-link>
+                   <v-link title="X-Tag Basic" link="/src/examples/xtag-basic.html"></v-link>
+                   <v-link title="Bosonic Basic" link="/src/examples/bosonic-basic.html"></v-link>
+                </ul>
             </section>
         </main>
         <p-footer></p-footer>
@@ -74,14 +78,30 @@
                             });
                             markup += "</ul>";
                             this.innerHTML = markup;
-                            
-                            // this.addEventListener("click", function (e) {
-                            //     alert("Hello!");
-                            // });
+                            console.log(this.attributes);
+                        }
+                    },
+                    links: {
+                        type: Array,
+                        value: function(){
+                            return this.attributes.links || [];
                         }
                     }
                 })
             });
+            
+            document.registerElement("v-link", {
+                prototype: Object.create(HTMLElement.prototype, {
+                    createdCallback: {
+                        value: function () {
+                            this.innerHTML = "<li><a href='" + this.attributes.link.value + "'>" + this.attributes.title.value + "</a></li>";
+                            console.log(this.attributes);
+                        }
+                    }
+                })
+            });
+            
+            console.log(HTMLElement.prototype);
             
         })(window, document, xtag);
 </script>

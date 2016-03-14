@@ -26,26 +26,26 @@
     </head>
 
     <body>
-        <my-hello>Click Me</x-foo>
+        <my-hello>Click Me</my-hello>
         <x-clock></x-clock>
         <script src="/src/scripts/clock.js" async></script>
-<script>
-    // Our Javascript will go here.
-    (function (window, document, xtag) {
-        "use strict";
-        var myhello = document.registerElement("my-hello", {
-            prototype: Object.create(HTMLElement.prototype, {
-                createdCallback: {
-                    value: function () {
-                        this.addEventListener("click", function (e) {
-                            alert("Hello!");
-                        });
-                    }
-                }
-            })
-        });
-    })(window, document, xtag);
-</script>
+        <script>
+            // Our Javascript will go here.
+            (function (window, document, xtag) {
+                "use strict";
+                var myhello = document.registerElement("my-hello", {
+                    prototype: Object.create(HTMLElement.prototype, {
+                        createdCallback: {
+                            value: function () {
+                                this.addEventListener("click", function (e) {
+                                    alert("Hello!");
+                                });
+                            }
+                        }
+                    })
+                });
+            })(window, document, xtag);
+        </script>
     </body>
 
 </html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8">
+        <title>Web Components</title>
+        <script src="/node_modules/webcomponents.js/webcomponents.js"></script>
+        <script src="/node_modules/x-tag/dist/x-tag-core.js"></script>
+        <style>
+            my-hello {
+                position: fixed;
+                top: 50px;
+                left: 50px;
+                width: 50px;
+                height: 50px;
+            }
+            
+            x-clock {
+                position: fixed;
+                top: 100px;
+                left: 100px;
+                width: 50px;
+                height: 50px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <my-hello>Click Me</my-hello>
+        <new-element></new-element>
+        <x-clock></x-clock>
+        <script src="/src/scripts/clock.js" async></script>
+        <script>
+            // Our Javascript will go here.
+            (function (window, document, xtag) {
+                "use strict";
+                var myhello = document.registerElement("my-hello", {
+                    prototype: Object.create(HTMLElement.prototype, {
+                        createdCallback: {
+                            value: function () {
+                                this.addEventListener("click", function (e) {
+                                    alert("Hello World!");
+                                });
+                            }
+                        }
+                    })
+                });
+                
+                xtag.register("new-element", {
+                    content: "This is a new element"
+                });
+            })(window, document, xtag);
+        </script>
+    </body>
+
+</html>

@@ -1,0 +1,30 @@
+<link rel="import" href="/bower_components/polymer/polymer.html">
+<link rel="import" href="/bower_components/marked-element/marked-element.html">
+<dom-module name="p-markdown">
+    <template>
+        <style>
+        </style>
+        <marked-element id="marked">
+            <div class="markdown-html"></div>
+            <script type="text/markdown">
+                {{content}}
+            </script>
+        </marked-element>
+    </template>
+    
+    <script>
+        (function(document, Polymer){
+            "use strict";
+
+            Polymer({
+                is: "p-markdown",
+                properties: {
+                    content: String
+                },
+                ready: function(){
+                    this.$.marked.markdown = this.content;
+                }
+            });
+        })(document, Polymer);
+    </script>
+</dom-module>

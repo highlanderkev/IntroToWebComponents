@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8">
+        <title>Basic Example of Web Components</title>
+        <script src="/node_modules/webcomponents.js/webcomponents.js"></script>
+        <style>
+            my-hello {
+                position: fixed;
+                top: 50px;
+                left: 50px;
+                width: 50px;
+                height: 50px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <my-hello>Click Me</my-hello>
+        <script>
+            // Our Javascript will go here.
+            (function (window, document) {
+                "use strict";
+                var myhello = document.registerElement("my-hello", {
+                    prototype: Object.create(HTMLElement.prototype, {
+                        createdCallback: {
+                            value: function () {
+                                this.addEventListener("click", function (e) {
+                                    alert("Hello World!");
+                                });
+                            }
+                        }
+                    })
+                });
+            })(window, document);
+        </script>
+    </body>
+
+</html>

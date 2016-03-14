@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8">
+        <title>Web Components</title>
+        <script src="/node_modules/webcomponents.js/webcomponents.js"></script>
+    </head>
+
+    <body>
+        <p>Hello World</p>
+        <script>
+            // Our Javascript will go here.
+            (function (window, document) {
+                "use strict";
+                var loaded = false;
+
+                window.addEventListener("WebComponentsReady", function () {
+                    if (!loaded) {
+                        alert("WebComponents Polyfill loaded!");
+                    }
+                    loaded = true;
+                });
+            })(window, document);
+        </script>
+    </body>
+
+</html>
