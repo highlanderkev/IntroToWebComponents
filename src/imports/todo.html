@@ -4,6 +4,8 @@
 
 <!--Custom-->
 <link rel="import" href="./status.html">
+<link rel="import" href="./draggable.html">
+<link rel="import" href="./toggleCollapse.html">
 <dom-module name="p-todo">
     <template>
         <style is="custom-style">
@@ -22,44 +24,51 @@
                 color: var(--paper-green-700);
             }
             
-            paper-card.custom {
-                --paper-card-background-color: var(--paper-blue-500);
+            paper-card {
+                background-color: var(--paper-blue-500);
             }
             
-            paper-button.custom:hover {
+            paper-button:hover {
                 background-color: var(--paper-indigo-500);
+            }
+            
+            paper-button {
+                color: white;
+            }
+            
+            paper-button.blue {
+                background-color: blue;
             }
             
             paper-button.red {
                 background-color: red;
-                color: white;
             }
             
             paper-button.green {
                 background-color: green;
-                color: white;
             }
             
         </style>
-        <paper-card class="custom">
-            <div class="card-content">
-                <div class="card-header">
-                    {{title}}
-                    <!--<div id="status" class="card-status">-->
-                    <!--    {{status}}-->
-                    <!--</div>-->
-                    <p-status status="{{status}}"></p-status>
-                </div>
+        <p-drag>
+            <paper-card class="custom">
                 <div class="card-content">
-                    {{content}}
+                    <div class="card-header">
+                        {{title}}
+                        <p-status status="{{status}}"></p-status>
+                    </div>
+                    <p-toggleCollapse id="collapse">
+                        <div class="card-content">
+                            {{content}}
+                        </div>
+                        <div class="card-actions">
+                            <paper-button id="done" raised class="green" on-click="handleClick">Done</paper-button>
+                            <paper-button id="test" raised class="yellow" on-click="handleClick">Ready for Test</paper-button>
+                            <paper-button id="blocked" raised class="red" on-click="handleClick">Roadblocked</paper-button>
+                        </div>
+                    </p-toggleCollapse>
                 </div>
-            </div>
-            <div class="card-actions">
-                <paper-button id="done" raised class="custom green" on-click="handleClick">Done</paper-button>
-                <paper-button id="test" raised class="custom yellow" on-click="handleClick">Ready for Test</paper-button>
-                <paper-button id="blocked" raised class="custom red" on-click="handleClick">Roadblocked</paper-button>
-            </div>
-        </paper-card>
+            </paper-card>
+        </p-drag>
     </template>
 
     <script>
@@ -89,24 +98,24 @@
                         value: "green"
                     }
                 },
-                handleClick: function(e, detail){
+                handleClick: function (e, detail) {
                     console.log(e.target.id === "done", detail);
-                    switch(e.target.id){
-                        case "done": 
-                            this.status = STATUS.DONE;
-                            this.customStyle["--card-status-color"] = "green";
-                            this.updateStyles();
-                            break;
-                        case "test":
-                            this.status = STATUS.TEST;
-                            this.customStyle["--card-status-color"] = "blue";
-                            this.updateStyles();
-                            break;
-                        case "blocked":
-                            this.status = STATUS.BLOCKED;
-                           this.customStyle["--card-status-color"] = "red";
-                           this.updateStyles();
-                            break;
+                    switch (e.target.id) {
+                    case "done":
+                        this.status = STATUS.DONE;
+                        this.customStyle["--card-status-color"] = "green";
+                        this.updateStyles();
+                        break;
+                    case "test":
+                        this.status = STATUS.TEST;
+                        this.customStyle["--card-status-color"] = "blue";
+                        this.updateStyles();
+                        break;
+                    case "blocked":
+                        this.status = STATUS.BLOCKED;
+                        this.customStyle["--card-status-color"] = "red";
+                        this.updateStyles();
+                        break;
                     }
                 }
             });

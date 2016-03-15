@@ -1,0 +1,51 @@
+<link rel="import" href="/bower_components/polymer/polymer.html">
+<link rel="import" href="/bower_components/iron-collapse/iron-collapse.html">
+
+<!--Custom-->
+<link rel="import" href="./toggleIcon.html">
+<dom-module name="p-toggleCollapse">
+    <template>
+        <style is="custom-style">
+            :host {
+                --toggle-open-visible: visible;
+                --toggle-closed-visible: hidden;
+            }
+        </style>
+        <div id="control">
+            <p-toggleIcon class="open" icon="expand-more" on-click="toggle"></p-toggleIcon>
+        </div>
+        <iron-collapse id="collapse">
+            <div id="content">
+                <content></content>
+            </div>
+        </iron-collapse>
+    </template>
+
+    <script>
+        (function (document, Polymer) {
+            "use strict";
+
+            Polymer({
+                is: "p-toggleCollapse",
+                toggleStyle: function(open){
+                    if(open){
+                        this.customStyle["--toggle-open-visible"] = "hidden";
+                        this.customStyle["--toggle-closed-visible"] = "visible";
+                    }else{
+                        this.customStyle["--toggle-open-visible"] = "visible";
+                        this.customStyle["--toggle-closed-visible"] = "hidden";
+                    }
+                    this.updateStyles();
+                },
+                toggle: function(){
+                    this.$.collapse.toggle();
+                    if(this.$.collapse.opened){
+                        this.toggleStyle(true);
+                    }else{
+                        this.toggleStyle(false);
+                    }
+                }
+            });
+        })(document, Polymer);
+    </script>
+</dom-module>

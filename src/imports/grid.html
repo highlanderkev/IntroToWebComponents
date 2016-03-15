@@ -2,7 +2,7 @@
 
 <!--Custom-->
 <link rel="import" href="./storyControl.html">
-<link rel="import" href="./draggable.html">
+<link rel="import" href="./todo.html">
 <dom-module name="p-grid">
     <template>
         <style>
@@ -14,9 +14,7 @@
         <div id="grid">
             <p-storyControl id="control" title="test"></p-storyControl>
             <div id="placeholder"></div>
-            <p-drag>
-                Test
-            </p-drag>
+            <p-todo title="Test" content="This is a test"></p-todo>
         </div>
     </template>
     
@@ -37,7 +35,7 @@
                 },
                 addDraggable: function(item){
                     console.log(item);
-                    var draggable = document.createElement("p-drag");
+                    var draggable = document.createElement("p-todo");
                     Polymer.dom(this.$.grid).insertBefore(draggable, this.$.placeholder);
                 }
             });

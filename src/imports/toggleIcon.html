@@ -1,0 +1,39 @@
+<link rel="import" href="/bower_components/polymer/polymer.html">
+<link rel="import" href="/bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="/bower_components/iron-icon/iron-icon.html">
+<dom-module name="p-toggleIcon">
+    <template>
+        <style is="custom-style">
+            :host {
+                @apply(--toggle-open-visible);
+                @apply(--toggle-closed-visible);
+            }
+            
+            iron-icon.open {
+                visibility: var(--toggle-open-visible, visible);
+            }
+            
+            iron-icon.closed {
+                visibility: var(--toggle-closed-visible, hidden);
+            }
+            
+        </style>
+        <div id="toggle">
+            <iron-icon class="open" icon="expand-more"></iron-icon>
+            <iron-icon class="closed" icon="expand-less"></iron-icon>
+        </div>
+    </template>
+
+    <script>
+        (function (document, Polymer) {
+            "use strict";
+
+            Polymer({
+                is: "p-toggleIcon",
+                properties: {
+                    open: Boolean 
+                }
+            });
+        })(document, Polymer);
+    </script>
+</dom-module>
