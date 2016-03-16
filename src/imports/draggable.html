@@ -1,9 +1,8 @@
 <link rel="import" href="/bower_components/polymer/polymer.html">
 <dom-module name="p-drag">
     <template>
-        <div id="drag" class="draggable" draggable="true" on-dragstart="startDrag" on-track="handleTrack">
+        <div id="{{id}}" class="draggable" draggable="true" on-dragstart="startDrag" on-track="handleTrack">
             <content></content>
-            </div>
         </div>
     </template>
 
@@ -13,12 +12,11 @@
 
             Polymer({
                 is: "p-drag",
-                listeners: {
-                    "drag.on-dragstart": "startDrag",
-                    "drag.on-track": "handleTrack"
+                properties: {
+                    id: Number
                 },
                 startDrag: function(event){
-                    console.log("startDrag");
+                    console.log("startDrag",event.target.id);
                     event.dataTransfer.setData("text", event.target.id);
                 },
                 handleTrack: function(e){

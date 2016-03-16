@@ -47,25 +47,22 @@
             paper-button.green {
                 background-color: green;
             }
-            
         </style>
-        <p-drag>
+        <p-drag id="{{id}}">
             <paper-card class="custom">
-                <div class="card-content">
-                    <div class="card-header">
-                        {{title}}
+                <p-toggleCollapse id="collapse" title="{{title}}">
+                    <div class="card-content">
                         <p-status status="{{status}}"></p-status>
-                    </div>
-                    <p-toggleCollapse id="collapse">
-                        <div class="card-content">
+                        <div class="content">
                             {{content}}
                         </div>
-                        <div class="card-actions">
-                            <paper-button id="done" raised class="green" on-click="handleClick">Done</paper-button>
-                            <paper-button id="test" raised class="yellow" on-click="handleClick">Ready for Test</paper-button>
-                            <paper-button id="blocked" raised class="red" on-click="handleClick">Roadblocked</paper-button>
-                        </div>
-                    </p-toggleCollapse>
+                    </div>
+                    <div class="card-actions">
+                        <paper-button id="done" raised class="green" on-click="handleClick">Done</paper-button>
+                        <paper-button id="test" raised class="yellow" on-click="handleClick">Ready for Test</paper-button>
+                        <paper-button id="blocked" raised class="red" on-click="handleClick">Roadblocked</paper-button>
+                    </div>
+                </p-toggleCollapse>
                 </div>
             </paper-card>
         </p-drag>
@@ -85,6 +82,7 @@
             Polymer({
                 is: "p-todo",
                 properties: {
+                    id: Number,
                     title: String,
                     content: String,
                     status: {

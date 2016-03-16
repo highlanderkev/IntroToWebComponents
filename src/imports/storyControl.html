@@ -23,9 +23,10 @@
             </div>
             <paper-dialog id="todo">
                 <h2>New Todo</h2>
-                <paper-input id="todoInput" label="Description"></paper-input>
+                <paper-input id="inputTitle" label="Title"></paper-input>
+                <paper-input id="inputDescription" label="Description"></paper-input>
                 <div class="buttons">
-                    <paper-button dialog-dismiss>Cancel</paper-button>
+                    <paper-button id="todoCancel" dialog-dismiss>Cancel</paper-button>
                     <paper-button id="todoAccept" dialog-confirm>Accept</paper-button>
                 </div>
             </paper-dialog>
@@ -48,12 +49,24 @@
                     title: String
                 },
                 listeners: {
-                    "todoAccept.tap": "addTodo"
+                    "todoAccept.tap": "addTodo",
+                    "todoCancel.tap": "resetInput"
+                },
+                generateId: function(){
+                    return Math.random();
                 },
                 addTodo: function(e, detail){
-                    //console.log("e,detail",e,detail);
-                    //console.log("input",this.$.todoInput.value);
-                    this.fire('kick', {kicked: true});
+                    var todo = {
+                        id: this.generateId(),
+                        title: this.$.inputTitle.value,
+                        description: this.$.inputDescription.value
+                    };
+                    this.fire("addTodo", todo);
+                    this.resetInput();
+                },
+                resetInput: function(){
+                    this.$.inputTitle.value = "";
+                    this.$.inputDescription.value = "";
                 }
             });
         })(document, Polymer);

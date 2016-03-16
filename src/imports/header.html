@@ -1,23 +1,27 @@
 <link rel="import" href="/bower_components/polymer/polymer.html">
+<link rel="import" href="/bower_components/paper-header-panel/paper-header-panel.html">
 <link rel="import" href="/bower_components/paper-toolbar/paper-toolbar.html">
 <dom-module name="p-header">
     <template>
-        <style>
+        <style is="custom-style">
             :host {
-                @apply(--header-panel-color);
-                @apply(--header-panel-background-color)
+                @apply(--header-background);
+                @apply(--header-color);
             }
-            
+        
             paper-toolbar {
-                --paper-toolbar-background: var(--header-panel-background-color, green);
-                --paper-toolbar-color: var(--header-panel-color, white);
+                background-color: var(--header-background);
+                color: var(--header-color, white);
             }
         </style>
-        <paper-toolbar class="medium" justify="center">
-            <div class="top">
-                <span class="title">{{title}}</span>
-            </div>
-        </paper-toolbar>
+        <paper-header-panel class="flex" mode="cover">
+            <paper-toolbar class="medium" justify="center">
+                <div class="top">
+                    <span class="title">{{title}}</span>
+                    <content></content>
+                </div>
+            </paper-toolbar>
+        </paper-header-panel>
     </template>
 
     <script>

@@ -1,22 +1,17 @@
 <link rel="import" href="/bower_components/polymer/polymer.html">
 <link rel="import" href="/bower_components/paper-material/paper-material.html">
-<link rel="import" href="/bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+<link rel="import" href="/bower_components/iron-flex-layout/iron-flex-layout-classes.html"> 
 
-<!--Custom Elements-->
+<!--Custom-->
 <link rel="import" href="./storyControl.html">
 <link rel="import" href="./storySection.html">
-<link rel="import" href="./header.html">
-<link rel="import" href="./grid.html">
+<link rel="import" href="./toggleCollapse.html">
 <dom-module name="p-story">
     <template>
         <style is="custom-style" include="iron-flex iron-flex-alignment">
-            :host {
-                --header-panel-background-color: var(--paper-blue-100);
-                --header-panel-color: black;
-            }
-            
             paper-material {
                 min-height: inherit;
+                min-width: 100%;
                 background-color: var(--paper-blue-300);
                 color: black;
             }
@@ -28,31 +23,39 @@
                 min-height: 300px;
             }
             
-            aside {
+            p-toggleCollapse {
+                min-width: inherit;
+            }
+            
+            p-storyControl {
                 display: block;
                 float: left;
                 width: 100px;
                 min-height: inherit;
             }
+            
+            p-storySection {
+                width: calc(25% - 10px);
+                margin-right: 5px;
+                margin-left: 5px;
+                --toolbar-background: black;
+            }
+            
+            p-storySection#todoSection {
+                --toolbar-background: purple;
+            }
+            
+            
         </style>
-        <p-header title="{{title}}"></p-header>
-        <paper-material elevation="1" class="flex-center-align">
-            <aside>
-                <p-grid title="{{title}}"></p-grid>
-            </aside>
-            <section class="todo">
-                <p-storySection title="Todo"></p-storySection>
-            </section>
-            <section class="inProgress">
-                <p-storySection title="In Progress"></p-storySection>
-            </section>
-            <section class="toTest">
-                <p-storySection title="Ready to Test"></p-storySection>
-            </section>
-            <section class="done">
-                <p-storySection title="Done"></p-storySection>
-            </section>
-        </paper-material>
+        <p-toggleCollapse id="collapse" title="{{title}}">
+            <paper-material elevation="1" class="flex-center-align">
+                <p-storyControl id="storyControl" title="{{title}}"></p-storyControl>
+                <p-storySection id="todoSection" title="Todo"></p-storySection>
+                <p-storySection id="progressSection" title="In Progress"></p-storySection>
+                <p-storySection id="testSection" title="Ready to Test"></p-storySection>
+                <p-storySection id="doneSection" title="Done"></p-storySection>
+            </paper-material>
+        </p-toggleCollapse>
     </template>
     <script>
         (function (document, Polymer) {
@@ -62,6 +65,16 @@
                 is: "p-story",
                 properties: {
                     title: String
+                },
+                ready: function(){
+                    this.$.storyControl.addEventListener("addTodo", this.addTodo);
+                },
+                addTodo: function(event){
+                    var todo = event.detail;
+                    var todoSection = document.querySelector("#todoSection");
+                    console.log("addTodo", todo);
+                    console.log("todoSection", todoSection);
+                    todoSection.addTodo(todo);
                 }
             });
         })(document, Polymer);

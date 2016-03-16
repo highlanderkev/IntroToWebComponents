@@ -2,7 +2,9 @@
 <link rel="import" href="/bower_components/iron-collapse/iron-collapse.html">
 
 <!--Custom-->
+<link rel="import" href="./toolbar.html">
 <link rel="import" href="./toggleIcon.html">
+
 <dom-module name="p-toggleCollapse">
     <template>
         <style is="custom-style">
@@ -10,15 +12,31 @@
                 --toggle-open-visible: visible;
                 --toggle-closed-visible: hidden;
             }
+            
+            .container {
+                display: flex;
+                width: 100%;
+                height: 100%;
+                flex-direction: column;
+                justify-content: center;
+            }
+            
+            p-toggleIcon {
+                float: right;
+            }
         </style>
-        <div id="control">
-            <p-toggleIcon class="open" icon="expand-more" on-click="toggle"></p-toggleIcon>
-        </div>
-        <iron-collapse id="collapse">
-            <div id="content">
-                <content></content>
+        <div class="container">
+            <div id="controlHeader">
+                <p-toolbar title="{{title}}" on-click="toggle">
+                    <p-toggleIcon class="open" icon="expand-more"></p-toggleIcon>
+                </p-toolbar>
             </div>
-        </iron-collapse>
+            <iron-collapse id="collapse">
+                <div id="content">
+                    <content></content>
+                </div>
+            </iron-collapse>
+        </div>
     </template>
 
     <script>
@@ -27,6 +45,9 @@
 
             Polymer({
                 is: "p-toggleCollapse",
+                properties: {
+                    title: String
+                },
                 toggleStyle: function(open){
                     if(open){
                         this.customStyle["--toggle-open-visible"] = "hidden";

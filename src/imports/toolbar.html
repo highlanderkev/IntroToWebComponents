@@ -1,0 +1,36 @@
+<link rel="import" href="/bower_components/polymer/polymer.html">
+<link rel="import" href="/bower_components/paper-toolbar/paper-toolbar.html">
+<dom-module name="p-toolbar">
+    <template>
+        <style is="custom-style">
+            :host {
+                @apply(--toolbar-background);
+                @apply(--toolbar-color);
+            }
+        
+            paper-toolbar {
+                background-color: var(--toolbar-background, green);
+                color: var(--toolbar-color, white);
+            }
+        </style>
+        <paper-toolbar class="medium" justify="center">
+            <div class="top">
+                <span class="title">{{title}}</span>
+                <content></content>
+            </div>
+        </paper-toolbar>
+    </template>
+
+    <script>
+        (function (document, Polymer) {
+            "use strict";
+
+            Polymer({
+                is: "p-toolbar",
+                properties: {
+                    title: String
+                }
+            });
+        })(document, Polymer);
+    </script>
+</dom-module>

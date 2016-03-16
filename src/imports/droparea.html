@@ -5,7 +5,6 @@
             .droparea {
                 min-width: 200px;
                 min-height: 200px;
-                background-color: white;
             }
         </style>
         <div id="droparea" class="droparea" on-drop="onDrop" on-dragover="allowDrop">
@@ -31,6 +30,9 @@
                 allowDrop: function(event){
                     console.log("AllowDrop");
                     event.preventDefault();
+                },
+                addChild: function(item){
+                    this.$.droparea.appendChild(item);
                 }
             });
         })(document, Polymer);

@@ -3,6 +3,8 @@
 
 <!--Custom-->
 <link rel="import" href="./droparea.html">
+<link rel="import" href="./toggleCollapse.html">
+<link rel="import" href="./todo.html">
 <dom-module name="p-storySection">
     <template>
         <style is="custom-style" include="iron-flex iron-flex-alignment">
@@ -14,10 +16,11 @@
             }
         </style>
         <div class="section">
-            <h2>{{title}}</h2>
-            <p-droparea id="droparea" on-drop="onDrop">
-                <content></content>
-            </p-droparea>
+            <p-toggleCollapse id="collapse" title="{{title}}">
+                <p-droparea id="droparea" on-drop="onDrop">
+                    <content></content>
+                </p-droparea>
+            </p-toggleCollapse>
         </div>
     </template>
     <script>
@@ -39,6 +42,14 @@
                 allowDrop: function(event){
                     console.log("AllowDrop");
                     event.preventDefault();
+                },
+                addTodo: function(item){
+                    var newTodo = document.createElement("p-todo");
+                    newTodo.id = item.id;
+                    newTodo.title = item.title;
+                    newTodo.content = item.description;
+                    console.log("droparea", this.$.droparea);
+                    this.$.droparea.addChild(newTodo);
                 }
             });
         })(document, Polymer);

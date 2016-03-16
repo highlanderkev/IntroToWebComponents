@@ -1,0 +1,29 @@
+<link rel="import" href="/bower_components/polymer/polymer.html">
+<link rel="import" href="/bower_components/paper-material/paper-material.html">
+<link rel="import" href="/bower_components/iron-flex-layout/iron-flex-layout-classes.html"> 
+<dom-module name="p-board">
+    <template>
+        <style is="custom-style" include="iron-flex iron-flex-alignment">
+            p-toolbar {
+                --toolbar-background: blue;
+            }
+        </style>
+        <div id="board">
+            <p-toolbar title="{{title}}"></p-toolbar>
+            <p-story title="Test1"></p-story>
+            <p-todo id="1" title="Test" content="This is a todo."></p-todo>
+        </div>
+    </template>
+    <script>
+        (function (document, Polymer) {
+            "use strict";
+
+            Polymer({
+                is: "p-board",
+                properties: {
+                    title: String
+                }
+            });
+        })(document, Polymer);
+    </script>
+</dom-module>
