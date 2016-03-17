@@ -1,0 +1,14 @@
+<element name="b-hello">
+    <template>
+        <content></content>
+    </template>
+    <script>
+        Bosonic.register({
+            createdCallback: function () {
+                this.addEventListener("click", function (e) {
+                    alert("Hello!");
+                });
+            }
+        });
+    </script>
+</element>

@@ -5,9 +5,11 @@
         <meta charset="utf-8">
         <title>Web Components</title>
         <script src="/node_modules/webcomponents.js/webcomponents.js"></script>
-        <script src="/node_modules/x-tag/dist/x-tag-core.js"></script>
+        <script type="text/javascript" src="/node_modules/bosonic/dist/bosonic-runtime.js"></script>
+        <link rel="import" href="/src/imports/b-hello.html">
+        <link rel="import" href="/src/imports/b-clock.html">
         <style>
-            my-hello {
+            b-hello {
                 position: fixed;
                 top: 50px;
                 left: 50px;
@@ -15,7 +17,7 @@
                 height: 50px;
             }
             
-            x-clock {
+            b-clock {
                 position: fixed;
                 top: 100px;
                 left: 100px;
@@ -26,26 +28,8 @@
     </head>
 
     <body>
-        <my-hello>Click Me</my-hello>
-        <x-clock></x-clock>
-        <script src="/src/scripts/clock.js" async></script>
-        <script>
-            // Our Javascript will go here.
-            (function (window, document, xtag) {
-                "use strict";
-                var myhello = document.registerElement("my-hello", {
-                    prototype: Object.create(HTMLElement.prototype, {
-                        createdCallback: {
-                            value: function () {
-                                this.addEventListener("click", function (e) {
-                                    alert("Hello!");
-                                });
-                            }
-                        }
-                    })
-                });
-            })(window, document, xtag);
-        </script>
+        <b-hello>Click Me</b-hello>
+        <b-clock></b-clock>
     </body>
 
 </html>

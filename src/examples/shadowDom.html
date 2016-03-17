@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8">
+        <title>Shadow DOM Example of Web Components</title>
+        <script src="/node_modules/webcomponents.js/webcomponents.js"></script>
+        <style>
+            #root {
+                position: fixed;
+                top: 50px;
+                left: 50px;
+                width: 200px;
+                height: 200px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div id="root">Root for our Shadow DOM</div>
+        <template id="exampleTemplate">
+            <div id="click">
+                Click Me
+            </div>
+            <!--This is a script INSIDE our template + Shadow DOM-->
+            <script>
+                (function(document){
+                    var click = document.querySelector("#root").shadowRoot.querySelector("#click")
+                    click.addEventListener("click", function (e) {
+                        alert("Hello World!");
+                    });
+                })(document);
+            </script>
+        </template>
+        <!--This is a script OUTSIDE our template + Shadow DOM -->
+        <script>
+            (function (window, document) {
+                "use strict";
+                var template = document.querySelector("#exampleTemplate");
+                var clone = document.importNode(template.content, true);
+                var shadowRoot = document.querySelector("#root").createShadowRoot();
+                shadowRoot.appendChild(clone);
+            })(window, document);
+        </script>
+    </body>
+
+</html>

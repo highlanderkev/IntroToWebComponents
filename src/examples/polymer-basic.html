@@ -5,9 +5,9 @@
         <meta charset="utf-8">
         <title>Web Components</title>
         <script src="/node_modules/webcomponents.js/webcomponents.js"></script>
-        <script src="/node_modules/x-tag/dist/x-tag-core.js"></script>
+        <link rel="import" href="/bower_components/polymer/polymer.html">
         <style>
-            my-hello {
+            p-hello {
                 position: fixed;
                 top: 50px;
                 left: 50px;
@@ -15,7 +15,7 @@
                 height: 50px;
             }
             
-            x-clock {
+            p-clock {
                 position: fixed;
                 top: 100px;
                 left: 100px;
@@ -26,25 +26,48 @@
     </head>
 
     <body>
-        <my-hello>Click Me</my-hello>
-        <x-clock></x-clock>
-        <script src="/src/scripts/clock.js" async></script>
+        <p-hello>Click Me</p-hello>
+        <p-clock></p-clock>
         <script>
             // Our Javascript will go here.
-            (function (window, document, xtag) {
+            (function (window, document, Polymer) {
                 "use strict";
-                var myhello = document.registerElement("my-hello", {
-                    prototype: Object.create(HTMLElement.prototype, {
-                        createdCallback: {
-                            value: function () {
-                                this.addEventListener("click", function (e) {
-                                    alert("Hello!");
-                                });
-                            }
-                        }
-                    })
+                
+                Polymer({
+                    is: "p-hello",
+                    listeners: {
+                        "tap": "sayHello"
+                    },
+                    sayHello: function(){
+                        alert("Hello!");
+                    }
                 });
-            })(window, document, xtag);
+                
+                Polymer({
+                   is: "p-clock",
+                   listeners: {
+                       "tap": "handleTap"
+                   },
+                   created: function(){
+                       this.start();
+                   },
+                   handleTap: function(){
+                       if(this.interval) this.stop();
+                       else this.start();
+                   },
+                   start: function(){
+                       this.update();
+                       this.interval = setInterval(this.update.bind(this), 1000);
+                   },
+                   stop: function(){
+                       this.interval = clearInterval(this.interval);
+                   },
+                   update: function(){
+                       this.textContent = new Date().toLocaleTimeString();
+                   }
+                });
+                
+            })(window, document, Polymer);
         </script>
     </body>
 

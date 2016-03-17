@@ -7,7 +7,7 @@
         <script src="/node_modules/webcomponents.js/webcomponents.js"></script>
         <script src="/node_modules/x-tag/dist/x-tag-core.js"></script>
         <style>
-            my-hello {
+            x-hello {
                 position: fixed;
                 top: 50px;
                 left: 50px;
@@ -26,28 +26,20 @@
     </head>
 
     <body>
-        <my-hello>Click Me</my-hello>
-        <new-element></new-element>
+        <x-hello>Click Me</x-hello>
         <x-clock></x-clock>
         <script src="/src/scripts/clock.js" async></script>
         <script>
             // Our Javascript will go here.
             (function (window, document, xtag) {
                 "use strict";
-                var myhello = document.registerElement("my-hello", {
-                    prototype: Object.create(HTMLElement.prototype, {
-                        createdCallback: {
-                            value: function () {
-                                this.addEventListener("click", function (e) {
-                                    alert("Hello World!");
-                                });
-                            }
-                        }
-                    })
-                });
                 
-                xtag.register("new-element", {
-                    content: "This is a new element"
+                xtag.register("x-hello", {
+                    events: {
+                        tap: function(){
+                            alert("Hello World!");
+                        }
+                    }
                 });
             })(window, document, xtag);
         </script>

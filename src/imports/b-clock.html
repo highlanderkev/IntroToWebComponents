@@ -1,0 +1,27 @@
+<element name="b-clock">
+    <template>
+        <content></content>
+    </template>
+    <script>
+        Bosonic.register({
+            createdCallback: function () {
+                this.addEventListener("click", this.handleClick);
+                this.start();
+            },
+            handleClick: function(){
+                if(this.interval) this.stop();
+                else this.start();
+            },
+            start: function(){
+                this.update();
+                this.interval = setInterval(this.update.bind(this), 1000);
+            },
+            stop: function(){
+                this.interval = clearInterval(this.interval);
+            },
+            update: function(){
+                this.textContent = new Date().toLocaleTimeString();
+            }
+        });
+    </script>
+</element>
