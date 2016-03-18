@@ -1,7 +1,10 @@
-# IntroToWebComponents
-An Introduction to Web Components
+IntroToWebComponents
+===
+An Introduction to Web Components. This is the examples and source code for the kDisco Presentation I did on March 18th, 2016.
 
-Links
+[Presentation Slides](https://docs.google.com/presentation/d/1Z634U7FY8kjgWIx40Uj53C6QTa8tsVzIoX6tTxKAtv4/edit?usp=sharing)
+
+Wiki
 ---
 - [Web Components Wiki](https://www.w3.org/wiki/WebComponents/)
 
@@ -12,4 +15,3 @@ W3C Specifications
 - [Custom Elements Spec](http://w3c.github.io/webcomponents/spec/custom/)
 - [HTML Import Spec](http://w3c.github.io/webcomponents/spec/imports/)
 - [Template Element Spec](https://www.w3.org/TR/html5/scripting-1.html%23the-template-element)
-- 
