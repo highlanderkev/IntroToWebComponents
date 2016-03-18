@@ -1,6 +1,6 @@
 IntroToWebComponents
 ===
-An Introduction to Web Components. This is the examples and source code for the kDisco Presentation I did on March 18th, 2016.
+An Introduction to Web Components. This repo contains the examples and source code for the kDisco Presentation I did on March 18th, 2016.
 
 [Presentation Slides](https://docs.google.com/presentation/d/1Z634U7FY8kjgWIx40Uj53C6QTa8tsVzIoX6tTxKAtv4/edit?usp=sharing)
 
