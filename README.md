@@ -4,6 +4,23 @@ An Introduction to Web Components. This repo contains the examples and source co
 
 [Presentation Slides](https://docs.google.com/presentation/d/1Z634U7FY8kjgWIx40Uj53C6QTa8tsVzIoX6tTxKAtv4/edit?usp=sharing)
 
+To Run Examples
+---
+Download/Clone repo locally.
+
+Install Node.js, NPM and bower.
+
+Then do:
+```
+$ npm install
+$ bower install
+```
+
+Then run the server with Gulp:
+```
+$ gulp
+```
+
 Wiki
 ---
 - [Web Components Wiki](https://www.w3.org/wiki/WebComponents/)
