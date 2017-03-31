@@ -26,8 +26,12 @@
     "bosonic": "^1.0.0",
     "bosonic-core-elements": "^1.0.0",
     "bower": "^1.7.7",
+    "crisper": "^2.0.1",
     "gulp": "^3.9.1",
     "gulp-connect": "^3.1.0",
+    "gulp-crisper": "^1.0.0",
+    "gulp-vulcanize": "^6.1.0",
+    "vulcanize": "^1.14.7",
     "webcomponents.js": "^0.7.20",
     "x-tag": "^1.5.6"
   }

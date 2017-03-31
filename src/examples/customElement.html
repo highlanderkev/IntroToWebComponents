@@ -6,7 +6,7 @@
         <title>Custom Element Example of Web Components</title>
         <script src="/node_modules/webcomponents.js/webcomponents.js"></script>
         <style>
-            my-hello {
+            my-hello, div {
                 position: fixed;
                 top: 50px;
                 left: 50px;
@@ -17,7 +17,8 @@
     </head>
 
     <body>
-        <my-hello>Click Me</my-hello>
+        <!--<my-hello>Click Me</my-hello>-->
+        <div is="my-hello">Click Me</div>
         <script>
             // Our Javascript will go here.
             (function (window, document) {
@@ -31,7 +32,9 @@
                                 });
                             }
                         }
-                    })
+                    // })
+                    }),
+                    extends: "div"
                 });
             })(window, document);
         </script>

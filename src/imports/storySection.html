@@ -1,5 +1,5 @@
-<link rel="import" href="/bower_components/polymer/polymer.html">
-<link rel="import" href="/bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
 
 <!--Custom-->
 <link rel="import" href="./droparea.html">
@@ -14,6 +14,11 @@
                 @apply(--layout-justified);
                 min-height: inherit;
             }
+            
+            p-toggleCollapse {
+                @apply(--toolbar-background);
+            }
+            
         </style>
         <div class="section">
             <p-toggleCollapse id="collapse" title="{{title}}">
@@ -34,10 +39,10 @@
                     "droparea.on-dragover": "allowDrop"
                 },
                 onDrop: function(event){
-                    console.log("Story:OnDrop");
-                    // event.preventDefault();
-                    // var data = event.dataTransfer.getData("text");
-                    // event.target.appendChild(document.getElementById(data));
+                    console.log("Story:OnDrop",event);
+                    event.preventDefault();
+                    var data = event.dataTransfer.getData("text");
+                    document.getElementById(data).updateStatus(this.title);
                 },
                 allowDrop: function(event){
                     console.log("AllowDrop");

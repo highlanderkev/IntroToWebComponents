@@ -38,8 +38,8 @@
                 "use strict";
                 var template = document.querySelector("#exampleTemplate");
                 var clone = document.importNode(template.content, true);
-                var root = document.querySelector("#root");
-                root.appendChild(clone);
+                //var root = document.querySelector("#root");
+                document.body.appendChild(clone);
             })(window, document);
         </script>
     </body>

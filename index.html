@@ -35,77 +35,81 @@
         <main flex>
             <section>
                 <h2>Web Components</h2>
-                <web-components id="components" links='["clock","footer","grid","header","story","todo"]'></web-components>
+                <web-components></web-components>
             </section>
             <section>
                 <h2>Examples</h2>
                 <ul>
-                   <v-link title="Basic" link="/src/examples/basic.html"></v-link>
-                   <v-link title="Custom Element" link="/src/examples/customElement.html"></v-link>
-                   <v-link title="HTML Import" link="/src/examples/import.html"></v-link>
-                   <v-link title="Template" link="/src/examples/template.html"></v-link>
-                   <v-link title="Shadow DOM" link="/src/examples/shadowDom.html"></v-link>
-                   <v-link title="Polymer Basic" link="/src/examples/polymer-basic.html"></v-link>
-                   <v-link title="X-Tag Basic" link="/src/examples/xtag-basic.html"></v-link>
-                   <v-link title="Bosonic Basic" link="/src/examples/bosonic-basic.html"></v-link>
-                   <v-link title="StoryBoard" link="/src/examples/storyboard.html"></v-link>
+                    <v-link title="Polyfill Example" link="/src/examples/polyfill-Listener.html"></v-link>
+                    <v-link title="Custom Element" link="/src/examples/customElement.html"></v-link>
+                    <v-link title="HTML Import" link="/src/examples/import.html"></v-link>
+                    <v-link title="Template" link="/src/examples/template.html"></v-link>
+                    <v-link title="Shadow DOM" link="/src/examples/shadowDom.html"></v-link>
+                    <v-link title="Polymer Basic" link="/src/examples/polymer-basic.html"></v-link>
+                    <v-link title="X-Tag Basic" link="/src/examples/xtag-basic.html"></v-link>
+                    <v-link title="Bosonic Basic" link="/src/examples/bosonic-basic.html"></v-link>
+                    <v-link title="Bundle Example" link="/src/examples/bundle.html"></v-link>
+                    <v-link title="StoryBoard" link="/src/examples/storyboard.html"></v-link>
                 </ul>
             </section>
         </main>
-        <p-footer><p>Intro to Web Components</p><p>&copy; 2016 Kevin Patrick Westropp</p></p-footer>
+        <p-footer>
+            <p>Intro to Web Components</p>
+            <p>&copy; 2016 Kevin Patrick Westropp</p>
+        </p-footer>
         <script>
-        // Our Javascript will go here.
-        (function (window, document, xtag) {
-            "use strict";
-            
-            var loaded = false;
-            
-            window.addEventListener("WebComponentsReady", function(){
-                if(!loaded){
-                    alert("WebComponents Polyfill loaded!");
-                }
-                loaded = true;
-            });
-            
-            var components = ["clock","footer","grid","header","story","todo"];
-            
-            document.registerElement("web-components", {
-                prototype: Object.create(HTMLElement.prototype, {
-                    createdCallback: {
-                        value: function () {
-                            var markup = "<ul>";
-                            components.forEach(function(c){
-                                markup += "<li><a href='/src/imports/" + c + ".html'>" + c + "</a></li>";
-                            });
-                            markup += "</ul>";
-                            this.innerHTML = markup;
-                            console.log(this.attributes);
-                        }
-                    },
-                    links: {
-                        type: Array,
-                        value: function(){
-                            return this.attributes.links || [];
-                        }
+            // Our Javascript will go here.
+            (function (window, document, xtag) {
+                "use strict";
+
+                var loaded = false;
+
+                window.addEventListener("WebComponentsReady", function () {
+                    if (!loaded) {
+                        alert("WebComponents Polyfill loaded!");
                     }
-                })
-            });
-            
-            document.registerElement("v-link", {
-                prototype: Object.create(HTMLElement.prototype, {
-                    createdCallback: {
-                        value: function () {
-                            this.innerHTML = "<li><a href='" + this.attributes.link.value + "'>" + this.attributes.title.value + "</a></li>";
-                            console.log(this.attributes);
+                    loaded = true;
+                });
+
+                var components = ["board", "clock", "draggable", "droparea", "footer", "header", "markdown", "status", "story", "storyControl", "storySection", "todo", "toggleCollapse", "toggleIcon", "toolbar"];
+
+                document.registerElement("web-components", {
+                    prototype: Object.create(HTMLElement.prototype, {
+                        createdCallback: {
+                            value: function () {
+                                var markup = "<ul>";
+                                components.forEach(function (c) {
+                                    markup += "<li><a href='/src/imports/" + c + ".html'>" + c + "</a></li>";
+                                });
+                                markup += "</ul>";
+                                this.innerHTML = markup;
+                                console.log(this.attributes);
+                            }
+                        },
+                        links: {
+                            type: Array,
+                            value: function () {
+                                return this.attributes.links || [];
+                            }
                         }
-                    }
-                })
-            });
-            
-            console.log(HTMLElement.prototype);
-            
-        })(window, document, xtag);
-</script>
+                    })
+                });
+
+                document.registerElement("v-link", {
+                    prototype: Object.create(HTMLElement.prototype, {
+                        createdCallback: {
+                            value: function () {
+                                this.innerHTML = "<li><a href='" + this.attributes.link.value + "'>" + this.attributes.title.value + "</a></li>";
+                                console.log(this.attributes);
+                            }
+                        }
+                    })
+                });
+
+                console.log(HTMLElement.prototype);
+
+            })(window, document, xtag);
+        </script>
     </body>
 
 </html>

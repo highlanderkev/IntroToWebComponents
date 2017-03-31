@@ -1,5 +1,5 @@
-<link rel="import" href="/bower_components/polymer/polymer.html">
-<link rel="import" href="/bower_components/iron-collapse/iron-collapse.html">
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/iron-collapse/iron-collapse.html">
 
 <!--Custom-->
 <link rel="import" href="./toolbar.html">
@@ -11,6 +11,8 @@
             :host {
                 --toggle-open-visible: visible;
                 --toggle-closed-visible: hidden;
+                @apply(--toolbar-background);
+                @apply(--container-color);
             }
             
             .container {
@@ -19,6 +21,7 @@
                 height: 100%;
                 flex-direction: column;
                 justify-content: center;
+                background-color: var(--container-color, azure);
             }
             
             p-toggleIcon {

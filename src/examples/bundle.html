@@ -3,7 +3,7 @@
 
     <head>
         <meta charset="utf-8">
-        <title>Storyboard</title>
+        <title>Bundle Example of Web Components</title>
         <script type="text/javascript" src="/node_modules/webcomponents.js/webcomponents.js"></script>
         <script type="text/javascript" src="/node_modules/x-tag/dist/x-tag-core.js"></script>
         <script type="text/javascript" src="/node_modules/bosonic/dist/bosonic-runtime.js"></script>
@@ -11,7 +11,7 @@
         <script type="text/javascript" href="/src/bundle/index.js"></script>
         <style is="custom-style">
             p-header {
-                --header-background: red;
+                --header-background: purple;
             }
         
             main {
@@ -22,38 +22,25 @@
                 flex-direction: column;
             }
             
-            p-board {
+            p-todo {
                 align-self: center;
                 width: inherit;
+                --container-color: red;
+                --toolbar-background: blue;
             }
         </style>
     </head>
 
     <body fullbleed vertical layout>
-        <p-header title="Storyboard"></p-header>
+        <p-header title="Bundle Example"></p-header>
         <main flex>
-            <p-board title="User Stories"></p-board>
+            <h2>Below is a web component from our bundle.</h2>
+            <p-todo title="Example Todo" content="This is an example todo item."></p-todo>
         </main>
         <p-footer>
-            <p>Storyboard</p>
+            <p>Bundle Example</p>
             <p>&copy; 2016 kCura</p>
         </p-footer>
-        <script>
-            // Our Javascript will go here.
-            (function (window, document, xtag) {
-                "use strict";
-
-                var loaded = false;
-
-                window.addEventListener("WebComponentsReady", function () {
-                    if (!loaded) {
-                        //alert("WebComponents Polyfill loaded!");
-                    }
-                    loaded = true;
-                });
-
-            })(window, document, xtag);
-        </script>
     </body>
 
 </html>

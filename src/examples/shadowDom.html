@@ -12,6 +12,12 @@
                 left: 50px;
                 width: 200px;
                 height: 200px;
+                background-color: blue;
+                z-index: 1;
+            }
+            
+            #click {
+                background-color: black !important;
             }
         </style>
     </head>
@@ -19,6 +25,12 @@
     <body>
         <div id="root">Root for our Shadow DOM</div>
         <template id="exampleTemplate">
+            <style>
+                #click {
+                    background-color: red;
+                    z-index: 100;
+                }
+            </style>
             <div id="click">
                 Click Me
             </div>

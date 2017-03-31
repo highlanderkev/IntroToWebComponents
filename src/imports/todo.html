@@ -1,6 +1,6 @@
-<link rel="import" href="/bower_components/polymer/polymer.html">
-<link rel="import" href="/bower_components/paper-card/paper-card.html">
-<link rel="import" href="/bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
 
 <!--Custom-->
 <link rel="import" href="./status.html">
@@ -36,6 +36,10 @@
                 color: white;
             }
             
+            paper-button.yellow {
+                background-color: yellow;
+            }
+            
             paper-button.blue {
                 background-color: blue;
             }
@@ -59,7 +63,7 @@
                     </div>
                     <div class="card-actions">
                         <paper-button id="done" raised class="green" on-click="handleClick">Done</paper-button>
-                        <paper-button id="test" raised class="yellow" on-click="handleClick">Ready for Test</paper-button>
+                        <paper-button id="test" raised class="blue" on-click="handleClick">Ready for Test</paper-button>
                         <paper-button id="blocked" raised class="red" on-click="handleClick">Roadblocked</paper-button>
                     </div>
                 </p-toggleCollapse>
@@ -73,6 +77,7 @@
             "use strict";
 
             var STATUS = {
+                TODO: "Todo",
                 DONE: "Done",
                 TEST: "Ready for Test",
                 BLOCKED: "Road Blocked",
@@ -98,22 +103,39 @@
                 },
                 handleClick: function (e, detail) {
                     console.log(e.target.id === "done", detail);
-                    switch (e.target.id) {
-                    case "done":
-                        this.status = STATUS.DONE;
-                        this.customStyle["--card-status-color"] = "green";
-                        this.updateStyles();
-                        break;
-                    case "test":
-                        this.status = STATUS.TEST;
-                        this.customStyle["--card-status-color"] = "blue";
-                        this.updateStyles();
-                        break;
-                    case "blocked":
-                        this.status = STATUS.BLOCKED;
-                        this.customStyle["--card-status-color"] = "red";
-                        this.updateStyles();
-                        break;
+                    this.updateStatus(e.target.id);
+                },
+                updateStatus: function (newStatus) {
+                    if (!!newStatus) {
+                        switch (newStatus) {
+                        case "Done":
+                        case "done":
+                            this.status = STATUS.DONE;
+                            this.customStyle["--card-status-color"] = "green";
+                            this.updateStyles();
+                            break;
+                        case "Ready to Test":
+                        case "test":
+                            this.status = STATUS.TEST;
+                            this.customStyle["--card-status-color"] = "blue";
+                            this.updateStyles();
+                            break;
+                        case "In Progress":
+                            this.status = STATUS.PROGRESS
+                            this.customStyle["--card-status-color"] = "yellow";
+                            this.updateStyles();
+                            break;
+                        case "blocked":
+                            this.status = STATUS.BLOCKED;
+                            this.customStyle["--card-status-color"] = "red";
+                            this.updateStyles();
+                            break;
+                        default:
+                            this.status = STATUS.TODO;
+                            this.customStyle["--card-status-color"] = "green";
+                            this.updateStyles();
+                            break;
+                        }
                     }
                 }
             });
